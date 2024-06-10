@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="icon">
+    <img src="../blue-stone-icon.svg" alt="BlueStone App Logo" />
+  </div>
+  <div class="navbar-links">
+    <div><a [routerLink]="['/']">Home</a></div>
+    <div><a [routerLink]="['/products']">Products</a></div>
+    <div><a [routerLink]="['/stock']">Stock</a></div>
+    <div><a [routerLink]="['/orders']">Orders</a></div>
+    <div><a [routerLink]="['/about']">About</a></div>
+    <div><a [routerLink]="['profile']" class="btn btn-secondary" *ngIf="loginDisplay">Profile</a></div>
+  </div>
+  <div>
+    <a>
+      <button *ngIf="!loginDisplay" class="btn btn-secondary" (click)="login()">Sign In</button>
+      <button *ngIf="loginDisplay" class="btn btn-secondary" (click)="logout()">Sign Out</button>
+    </a>
+  </div>
+</nav>

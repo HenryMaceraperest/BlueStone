@@ -8,6 +8,7 @@ using BlueStone.Server.Mappers;
 using BlueStone.Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web.Resource;
+using System.Reflection;
 
 namespace BlueStone.Server.Controllers;
 
@@ -22,27 +23,80 @@ public class ProductController : Controller//, IProductController
 	//	this._dbContext = dbContext;
 	//}
 
-	[RequiredScope("product-stock-order-readwrite-access")]
+	//[RequiredScope("product-stock-order-readwrite-access")]
 	[HttpGet("all")]
-	[Authorize]
-	public async Task<ActionResult<List<Product>>> GetAllProducts()
+	//[Authorize]
+	public async Task<ActionResult<List<Product>>> GetAllProducts([FromQuery]SortQueryParameters parameters)
 	{
-		return new List<Product>
+		List<Product> listToReturn = new List<Product>
 		{
 			new Product
 			{
 				Id = 1,
 				ImageUrl = "https://test.com/image/1",
-				Name = "TestName",
-				Code = "TestCode",
-				Barcode = "00TestBarcode00",
-				Model = "TestModel",
-				Stock = 2,
+				Name = "TestName1",
+				Code = "TestCode1",
+				Barcode = "11TestBarcode11",
+				Model = "TestModel1",
+				Stock = 5,
 				AverageCost = 3.45m,
 				RSP = 3.5m,
 				LastUpdated = DateTime.Now
-			}
-		};
+			},
+            new Product
+            {
+                Id = 2,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName2",
+                Code = "TestCode2",
+                Barcode = "22TestBarcode22",
+                Model = "TestModel2",
+                Stock = 5,
+                AverageCost = 3.45m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now
+            },
+            new Product
+            {
+                Id = 3,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName3",
+                Code = "TestCode3",
+                Barcode = "33TestBarcode33",
+                Model = "TestModel3",
+                Stock = 5,
+                AverageCost = 3.45m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now
+            },
+             new Product
+            {
+                Id = 4,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName4",
+                Code = "TestCode4",
+                Barcode = "44TestBarcode44",
+                Model = "TestModel4",
+                Stock = 5,
+                AverageCost = 3.45m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now
+            }
+        };
+
+		if (parameters.Column != null && parameters.Sort != null && typeof(Product).GetProperty(parameters.Column) != null)
+		{
+			PropertyInfo parametersColumn = typeof(Product).GetProperty(parameters.Column);
+			if (parameters.Sort == "desc")
+			{
+                listToReturn = listToReturn.OrderByDescending(x => parametersColumn.GetValue(x, null)).ToList();
+            }
+            else
+			{
+                listToReturn = listToReturn.OrderBy(x => parametersColumn.GetValue(x, null)).ToList();
+            }
+        }
+		return listToReturn;
 	}
 
 	//[HttpGet("{id}")]

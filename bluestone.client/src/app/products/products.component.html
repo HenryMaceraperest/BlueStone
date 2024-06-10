@@ -1,0 +1,23 @@
+<h1>Products Table<h1>
+
+<table class="products-table">
+  <thead>
+    <tr>
+      <th
+          *ngFor="let col of productColumns"
+          class="products-table-cell"
+          (click)="sortTable(col)">
+        {{col}}
+        <span *ngIf="isDescendingSorting(col)">↓</span>
+        <span *ngIf="isAscendingSorting(col)">↑</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productList">
+      <td *ngFor="let col of productColumns"  class="products-table-cell">
+        {{product[col]}}
+      </td>
+    </tr>
+  </tbody>
+</table>

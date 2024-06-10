@@ -1,0 +1,31 @@
+.navbar {
+  position: sticky;
+  top: -5px;
+  width: 100%;
+  background-color: #3f51b5;
+  color: #fff;
+  display: flex;
+  padding: 0 16px;
+  height: 56px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-links {
+  display: flex;
+  width: 50vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-secondary {
+  margin-right: 20px;
+}
+
+.icon img {
+  height: 130px;
+}
+
+  .icon img:hover {
+    cursor: pointer;
+  }
