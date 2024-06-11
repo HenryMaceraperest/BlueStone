@@ -48,7 +48,7 @@ export class ProductAddEditComponent implements OnInit {
         var resultData = data.body;
         if (resultData) {
           this.currentProduct = resultData;
-          console.log(resultData);
+          this.fillProductForm();
         }
       }
     },
@@ -63,13 +63,50 @@ export class ProductAddEditComponent implements OnInit {
       });
   }
 
-  onSubmit() {
-    console.log(this.productForm.value);
+  async addProduct() {
+    this.httpProvider.addProduct(this.currentProduct!).subscribe((data: any) => { },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            if (error.error && error.error.message) {
+              this.currentProduct = null;
+            }
+          }
+        }
+      });
   }
 
-  transformAmount(element: any) {
-    this.formattedAmount = this.currencyPipe.transform(this.formattedAmount, '£');
+  async updateProduct() {
+    this.httpProvider.updateProduct(this.currentProduct!).subscribe((data: any) => { },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            if (error.error && error.error.message) {
+              this.currentProduct = null;
+            }
+          }
+        }
+      });
+  }
 
-    element.target.value = this.formattedAmount;
+  onSubmit() {
+    if (this.addOrSave = "Save Changes") {
+      this.updateProduct()
+    } else {
+      this.addProduct()
+    }
+  }
+
+  fillProductForm() {
+    this.productForm.patchValue({
+      imageUrl    : this.currentProduct?.imageUrl,
+      name        : this.currentProduct?.name,
+      code        : this.currentProduct?.code,
+      barcode     : this.currentProduct?.barcode,
+      model       : this.currentProduct?.model,
+      stock       : this.currentProduct?.stock.toString(),
+      averageCost : this.currentProduct?.averageCost.toString(),
+      rsp         : this.currentProduct?.rsp.toString(),
+    });    
   }
 }

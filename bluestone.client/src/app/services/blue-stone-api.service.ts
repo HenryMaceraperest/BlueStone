@@ -50,22 +50,31 @@ export class BlueStoneApiService {
       )
   }
 
-  //addNewProduct(url: string, model: any): Observable<any> {
-  //  const httpOptions = {
-  //    headers: new HttpHeaders({
-  //      'Content-Type': 'application/json'
-  //    }), 
-  //    observe: "response" as 'body'
-  //  };
-  //  return this.httpClient.post(
-  //    url,
-  //    model,
-  //    httpOptions)
-  //    .pipe(
-  //      map((response: any) => this.ReturnResponseData(response)),
-  //      catchError(this.handleError)      
-  //  );
-  //}
+  addProduct(url: string, product: IProduct): Observable<any> {
+    return this.httpClient.post(
+      url,
+      product)
+      .pipe(
+        map((response: any) => this.ReturnResponseData(response)),
+        catchError(this.handleError)      
+        );
+  }
+
+  updateProduct(url: string, product: IProduct): Observable<any> {
+    return this.httpClient.patch(url, product)
+      .pipe(
+          map((response: any) => this.ReturnResponseData(response)),
+          catchError(this.handleError)
+          );
+  }
+
+  archiveProduct(url: string, productID: number): Observable<any> {
+    return this.httpClient.patch(url, productID)
+      .pipe(
+        map((response: any) => this.ReturnResponseData(response)),
+        catchError(this.handleError)
+      );
+  }
 
   private ReturnResponseData(response: any) {
     return response;

@@ -22,12 +22,22 @@
   color: #fff;
   font-size: 1em;
 }
+
+.product-sort {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+}
+
 .products-table{
     border-collapse: collapse;
 }
-.products-table-cell {
+.products-table-cell-header {
   background: #1d2b3a;
-  border-style: hidden;
 }
 
 .search-filter > div {
@@ -55,6 +65,14 @@ h1 {
 .no-products{
     text-align: center;
     padding-top: 35px;
+}
+
+.products-table tbody tr:nth-child(odd) {
+  background-color: #161f29;
+}
+
+.products-table tbody tr:hover {
+  background-color: #223d59;
 }
 
 @media (min-width: 1250px) {
@@ -90,26 +108,19 @@ h1 {
     min-height: 50px;
   }
 
+  .image-cell {
+    display: flex;
+    justify-content: center;
+  }
+
   .search-filter input,
   .search-filter select {
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
-
   .products-table thead {
     background-color: #f4f4f4;
-  }
-
-
-  /* Zebra striping for rows */
-  .products-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
-
-  /* Hover effect for rows */
-  .products-table tbody tr:hover {
-    background-color: #f1f1f1;
   }
 }
 
@@ -134,10 +145,6 @@ h1 {
     border-bottom: 2px solid #ddd;
   }
 
-  .products-table tbody tr:nth-of-type(odd) {
-    background-color: #f9f9f9;
-  }
-
   .products-table-cell {
     display: flex;
     align-items: center;
@@ -160,10 +167,6 @@ h1 {
       justify-content: center;
       margin-bottom: 10px;
       border-bottom: 2px solid #ddd;
-    }
-
-    .products-table tbody tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
     }
 
     .products-table-cell {

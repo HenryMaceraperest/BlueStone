@@ -1,0 +1,31 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header {
+  margin-top: 25px;
+  background-color: #0a121a;
+  border-radius: 15px;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.under-header{
+    display: flex;
+    flex-direction:row;
+}
+
+.map-img{
+    margin-top: 20px;
+    width: 30vw;
+    height: auto;
+    border-radius: 30px;
+}
+
+.content {
+  margin: 15px;
+  padding: 25px 25px;
+  line-height: 1.6;
+}

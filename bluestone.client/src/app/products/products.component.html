@@ -6,7 +6,7 @@
     </div>
     <div>
       <label for="sortingType">Sort products</label>
-      <select [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
+      <select class="product-sort" [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
         <option *ngFor="let option of options" [value]="option">{{option}}</option>
       </select>
     </div>
@@ -16,7 +16,7 @@
     <thead>
       <tr>
         <th *ngFor="let col of productColumns"
-            class="products-table-cell">
+            class="products-table-cell products-table-cell-header">
           {{columnHeaders[col]}}
         </th>
       </tr>

@@ -8,7 +8,8 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
 
 export class HomeComponent implements OnInit {
@@ -17,7 +18,6 @@ export class HomeComponent implements OnInit {
     private msalBroadcastService: MsalBroadcastService
   ) { }
 
-  // Subscribe to the msalSubject$ observable on the msalBroadcastService
   ngOnInit(): void {
     this.msalBroadcastService.msalSubject$
       .pipe(

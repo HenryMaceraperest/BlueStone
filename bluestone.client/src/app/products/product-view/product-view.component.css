@@ -1,0 +1,48 @@
+.full-form-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 25px;
+}
+
+.form-image{
+    width: 300px;
+    height: auto;
+}
+
+.form-component {
+  position: relative;
+  width: 300px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  padding-bottom: 100px;
+}
+
+.form-component div {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.form-component span {
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+

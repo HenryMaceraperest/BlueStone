@@ -154,61 +154,61 @@ public class ProductController : Controller//, IProductController
 		return NotFound();
 	}
 
-	//[HttpPost("Add")]
-	//[ValidateAntiForgeryToken]
-	//public async Task<ActionResult> AddProduct(AddProductDTO request)
-	//{
-	//	var productMapper = new ProductMapper();
-	//	var domainModelProduct = new Product();
-	//	try
-	//	{
-	//		domainModelProduct = productMapper.Map(request);
+    //[HttpPost("Add")]
+    //[ValidateAntiForgeryToken]
+    //public async Task<ActionResult> AddProduct(AddProductDTO request)
+    //{
+    //    var productMapper = new ProductMapper();
+    //    var domainModelProduct = new Product();
+    //    try
+    //    {
+    //        domainModelProduct = productMapper.Map(request);
 
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		Console.Write(ex.ToString());
-	//	}
-	//	_dbContext.Products.Add(domainModelProduct);
-	//	await _dbContext.SaveChangesAsync();
-	//	return Ok(domainModelProduct);
-	//}
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Console.Write(ex.ToString());
+    //    }
+    //    _dbContext.Products.Add(domainModelProduct);
+    //    await _dbContext.SaveChangesAsync();
+    //    return Ok(domainModelProduct);
+    //}
 
-	//[HttpPatch]
-	//[ValidateAntiForgeryToken]
-	//public async Task<ActionResult> UpdateProduct(Product product)
-	//{
-	//	try
-	//	{
-	//		_dbContext.Entry(product).State = EntityState.Modified;
-	//		await _dbContext.SaveChangesAsync();
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		Console.Write(ex.ToString());
-	//	}
-	//	return Ok(product);
-	//}
+    //[HttpPatch]
+    //[ValidateAntiForgeryToken]
+    //public async Task<ActionResult> UpdateProduct(Product product)
+    //{
+    //    try
+    //    {
+    //        _dbContext.Entry(product).State = EntityState.Modified;
+    //        await _dbContext.SaveChangesAsync();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Console.Write(ex.ToString());
+    //    }
+    //    return Ok(product);
+    //}
 
-	//[HttpPost("Archive/{id}")]
-	//[ValidateAntiForgeryToken]
-	//public async Task<ActionResult> ArchiveProduct(int id)
-	//{
-	//	try
-	//	{
-	//		var product = await _dbContext.Products.FindAsync(id);
-	//		if (product != null)
-	//		{
-	//			product.IsArchived = true;
-	//			_dbContext.Entry(product).State = EntityState.Modified;
-	//			await _dbContext.SaveChangesAsync();
-	//			return Ok();
-	//		}
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		Console.Write(ex.ToString());
-	//	}
-	//	return NotFound();
-	//}
+    //[HttpPost("Archive/{id}")]
+    //[ValidateAntiForgeryToken]
+    //public async Task<ActionResult> ArchiveProduct(int id)
+    //{
+    //	try
+    //	{
+    //		var product = await _dbContext.Products.FindAsync(id);
+    //		if (product != null)
+    //		{
+    //			product.IsArchived = true;
+    //			_dbContext.Entry(product).State = EntityState.Modified;
+    //			await _dbContext.SaveChangesAsync();
+    //			return Ok();
+    //		}
+    //	}
+    //	catch (Exception ex)
+    //	{
+    //		Console.Write(ex.ToString());
+    //	}
+    //	return NotFound();
+    //}
 }

@@ -9,6 +9,7 @@ import { StockComponent } from './stock/stock.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AboutComponent } from './about/about.component';
 import { ProductAddEditComponent } from './products/product-add-edit/product-add-edit.component';
+import { ProductViewComponent } from './products/product-view/product-view.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,18 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent
+  },
+  {
+    path: 'products/add',
+    component: ProductAddEditComponent
+  },
+  {
+    path: 'products/:productId',
+    component: ProductViewComponent
+  },
+  {
+    path: 'products/edit/:productId',
+    component: ProductAddEditComponent
   },
   {
     path: 'stock',
@@ -38,14 +51,6 @@ const routes: Routes = [
     path: '',
     component: HomeComponent
   },
-  {
-    path: 'products/add',
-    component: ProductAddEditComponent
-  },
-  {
-    path: 'products/edit/:productId',
-    component: ProductAddEditComponent
-  }
 ];
 
 @NgModule({

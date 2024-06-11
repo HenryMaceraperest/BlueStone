@@ -1,0 +1,37 @@
+<div class="full-form-view">
+  <div>
+    <div><img class="form-image" [src]="currentProduct?.imageUrl || '../../assets/defaultProduct.png'" /></div>
+  </div>
+  <div class="form-component">
+    <span>Name</span>
+    <div>{{ currentProduct?.name }}</div>
+  </div>
+  <div class="form-component">
+    <span>Code</span>
+    <div>{{ currentProduct?.code }}</div>
+  </div>
+  <div class="form-component">
+    <span>Barcode</span>
+    <div>{{ currentProduct?.barcode }}</div>
+  </div>
+  <div class="form-component">
+    <span>Model</span>
+    <div>{{ currentProduct?.model }}</div>
+  </div>
+  <div class="form-component">
+    <span>Stock</span>
+    <div>{{ currentProduct?.stock }}</div>
+  </div>
+  <div class="form-component">
+    <span>Average Cost</span>
+    <div>{{ currentProduct?.averageCost }}</div>
+  </div>
+  <div class="form-component">
+    <span>RSP</span>
+    <div>{{ currentProduct?.rsp }}</div>
+  </div>
+  <div class="form-buttons">
+    <button class="btn-success btn" [routerLink]="['/products/edit/' + currentProduct?.id]">Edit</button>
+    <button class="btn btn-danger" (click)="onDeleteClick()">Delete</button>
+  </div>
+</div>

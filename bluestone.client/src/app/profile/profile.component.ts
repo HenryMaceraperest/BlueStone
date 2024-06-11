@@ -19,7 +19,8 @@ type ProfileType = {
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
   profile!: ProfileType;
