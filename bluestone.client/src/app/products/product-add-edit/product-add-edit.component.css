@@ -1,0 +1,68 @@
+.full-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 25px;
+  background: #1d2b3a;
+}
+
+.form-input{
+    position: relative;
+    width: 300px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.form-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.form-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+.form-input span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.form-input input:valid ~ span, .form-input input:focus ~ span {
+  color: aqua;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #1d2b3a;
+  border-left: 1px solid aqua;
+  border-right: 1px solid aqua;
+  letter-spacing: 0.2em;
+}
+
+.form-input input:valid, .form-input input:focus {
+  border: 1px solid aqua;
+}

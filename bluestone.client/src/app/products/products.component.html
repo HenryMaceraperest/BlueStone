@@ -2,7 +2,7 @@
   <div class="search-filter">
     <div>
       <label for="searchQuery">Search products</label>
-      <input type="text" [(ngModel)]="searchQuery" placeholder="Search products...">
+      <input class="search-input" type="text" [(ngModel)]="searchQuery" placeholder="Search products...">
     </div>
     <div>
       <label for="sortingType">Sort products</label>
@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of filteredProducts">
-        <td *ngFor="let col of productColumns" class="products-table-cell product-table-result" [routerLink]="['/products', product.id]" [class.image-cell]="col === 'imageUrl'">
+        <td *ngFor="let col of productColumns" class="products-table-cell product-table-result" [routerLink]="['/products/' + product.id]" [class.image-cell]="col === 'imageUrl'">
           <ng-container *ngIf="col === 'imageUrl'; else notImage">
             <img class="product-image" [src]="product[col] || '../../assets/defaultProduct.png'" alt="Product image">
           </ng-container>
@@ -45,6 +45,6 @@
     </tr>
   </table>
   <div class="add-product-button">
-    <a [routerLink]="['/addproduct']"><button class="btn btn-primary">Add Product</button></a>
+    <a [routerLink]="['/products/add']"><button class="btn btn-primary">Add Product</button></a>
   </div>
 </div>

@@ -84,32 +84,75 @@ public class ProductController : Controller//, IProductController
             }
         };
 
-		if (parameters.Column != null && parameters.Sort != null && typeof(Product).GetProperty(parameters.Column) != null)
-		{
-			PropertyInfo parametersColumn = typeof(Product).GetProperty(parameters.Column);
-			if (parameters.Sort == "desc")
-			{
-                listToReturn = listToReturn.OrderByDescending(x => parametersColumn.GetValue(x, null)).ToList();
-            }
-            else
-			{
-                listToReturn = listToReturn.OrderBy(x => parametersColumn.GetValue(x, null)).ToList();
-            }
-        }
 		return listToReturn;
 	}
 
-	//[HttpGet("{id}")]
-	//public async Task<ActionResult<Product>> GetProductById(int id)
-	//{
-	//	var foundProduct = await _dbContext.Products.FindAsync(id);
-
-	//	if (foundProduct != null)
-	//	{
-	//		return Ok(foundProduct);
-	//	}
-	//	return NotFound();
-	//}
+	[HttpGet("{id}")]
+	public async Task<ActionResult<Product>> GetProductById(int id)
+	{
+        //var foundProduct = await _dbContext.Products.FindAsync(id);
+        List<Product> listToReturn = new List<Product>
+        {
+            new Product
+            {
+                Id = 1,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName1",
+                Code = "TestCode1",
+                Barcode = "00123341455",
+                Model = "TestModel1",
+                Stock = 3,
+                AverageCost = 6.65m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now.AddDays(-2).Date,
+            },
+            new Product
+            {
+                Id = 2,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName2",
+                Code = "TestCode2",
+                Barcode = "00122241455",
+                Model = "TestModel2",
+                Stock = 5,
+                AverageCost = 2.55m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now.Date,
+            },
+            new Product
+            {
+                Id = 3,
+                ImageUrl = "https://test.com/image/1",
+                Name = "TestName3",
+                Code = "TestCode3",
+                Barcode = "0523441455",
+                Model = "TestModel3",
+                Stock = 1,
+                AverageCost = 5.5m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now.AddDays(-1).Date,
+            },
+             new Product
+            {
+                Id = 4,
+                ImageUrl = "",
+                Name = "TestName4",
+                Code = "TestCode4",
+                Barcode = "00188651455",
+                Model = "TestModel4",
+                Stock = 7,
+                AverageCost = 2.45m,
+                RSP = 3.5m,
+                LastUpdated = DateTime.Now.AddDays(-5).Date,
+            }
+        };
+        var foundProduct = listToReturn.FirstOrDefault(x => x.Id == id);
+        if (foundProduct != null)
+		{
+			return Ok(foundProduct);
+		}
+		return NotFound();
+	}
 
 	//[HttpPost("Add")]
 	//[ValidateAntiForgeryToken]

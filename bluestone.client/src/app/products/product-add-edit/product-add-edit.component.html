@@ -1,1 +1,40 @@
-<p>product-add-edit works!</p>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div class="full-form">
+    <div class="form-input">      
+        <input type="text" formControlName="imageUrl" required="required">
+        <span>Image URL</span>      
+    </div>
+    <div class="form-input">      
+        <input type="text" formControlName="name" required="required">
+        <span>Name</span>
+    </div>
+    <div class="form-input">      
+        <input type="text" formControlName="code" required="required">
+        <span>Code</span>      
+    </div>
+    <div class="form-input">      
+        <input type="text" formControlName="barcode" required="required">
+        <span>Barcode</span>      
+    </div>
+    <div class="form-input">      
+        <input type="text" formControlName="model" required="required">
+        <span>Model</span>
+    </div>
+    <div class="form-input">      
+        <input type="number" formControlName="stock" required="required">
+        <span>Stock</span>      
+    </div>
+    <div class="form-input">      
+        <input type="text" appCurrencyFormatter formControlName="averageCost" required="required">
+        <span>Average Cost</span>      
+    </div>
+    <div class="form-input">      
+        <input type="text" appCurrencyFormatter formControlName="rsp" required="required">
+        <span>RSP</span>
+    </div>
+    <div class="form-buttons">
+      <button class="btn-success btn" type="submit">{{addOrSave}}</button>
+      <button class="btn btn-secondary" [routerLink]="['/products']">Cancel</button>
+    </div>
+  </div>
+</form>

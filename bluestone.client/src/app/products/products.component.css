@@ -13,6 +13,23 @@
   justify-content: space-between;
 }
 
+.search-input {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+}
+.products-table{
+    border-collapse: collapse;
+}
+.products-table-cell {
+  background: #1d2b3a;
+  border-style: hidden;
+}
+
 .search-filter > div {
   padding-bottom: 15px;
 }

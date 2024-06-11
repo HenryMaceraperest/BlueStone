@@ -22,6 +22,8 @@ import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductAddEditComponent } from './products/product-add-edit/product-add-edit.component';
+import { CurrencyPipe } from '@angular/common';
+import { CurrencyFormatterDirective } from './common/CurrencyFormatter.directive';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -61,6 +63,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ProductsComponent,
     AboutComponent,
     ProductAddEditComponent,
+    CurrencyFormatterDirective
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     },
     MsalService,
     MsalGuard,
-    MsalBroadcastService
+    MsalBroadcastService,
+    CurrencyPipe
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
   exports: [
@@ -97,7 +101,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ProfileComponent,
     NavbarComponent,
     ProductsComponent,
-    AboutComponent
+    AboutComponent,
+    CurrencyFormatterDirective
   ]
 })
 export class AppModule { }
