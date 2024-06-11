@@ -1,14 +1,16 @@
 <nav class="navbar">
   <div class="icon">
-    <img src="../blue-stone-icon.svg" alt="BlueStone App Logo" />
+    <a [routerLink]="['/']">
+    <img src="../../assets/blueStoneIcon.svg" alt="BlueStone App Logo" />
+    </a>
   </div>
   <div class="navbar-links">
-    <div><a [routerLink]="['/']">Home</a></div>
-    <div><a [routerLink]="['/products']">Products</a></div>
-    <div><a [routerLink]="['/stock']">Stock</a></div>
-    <div><a [routerLink]="['/orders']">Orders</a></div>
-    <div><a [routerLink]="['/about']">About</a></div>
-    <div><a [routerLink]="['profile']" class="btn btn-secondary" *ngIf="loginDisplay">Profile</a></div>
+    <div><a [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></div>
+    <div><a [routerLink]="['/products']" routerLinkActive="active-link">Products</a></div>
+    <div><a [routerLink]="['/stock']" routerLinkActive="active-link">Stock</a></div>
+    <div><a [routerLink]="['/orders']" routerLinkActive="active-link">Orders</a></div>
+    <div><a [routerLink]="['/about']" routerLinkActive="active-link">About</a></div>
+    <div><a [routerLink]="['profile']" routerLinkActive="active-link" *ngIf="loginDisplay">Profile</a></div>
   </div>
   <div>
     <a>

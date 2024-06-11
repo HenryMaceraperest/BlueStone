@@ -1,12 +1,229 @@
-.products-table{
+.products-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 25px 70px;
+  margin: 0 auto;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-filter > div {
+  padding-bottom: 15px;
+}
+
+.search-filter > div > label {
+  padding-right: 25px;
+}
+
+h1 {
+  font-size: 16px;
+}
+
+.add-product-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.product-table-result:hover {
+  cursor: pointer;
+}
+
+.no-products{
+    text-align: center;
+    padding-top: 35px;
+}
+
+@media (min-width: 1250px) {
+  .search-filter {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .search-filter > div {
+    padding-bottom: 15px;
+  }
+
+  .search-filter > div > label {
+    padding-right: 25px;
+  }
+
+  .products-table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-}
+    margin-top: 20px;
+  }
 
-.products-table-cell{
-    border: 1px solid #dddddd;
+  .products-table-cell {
+    border: 1px solid #ddd;
     text-align: left;
     padding: 8px;
-    font: normal 12px;
+  }
+
+  .product-image {
+    width: 50px;
+    height: auto;
+    min-height: 50px;
+  }
+
+  .search-filter input,
+  .search-filter select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+
+  .products-table thead {
+    background-color: #f4f4f4;
+  }
+
+
+  /* Zebra striping for rows */
+  .products-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  /* Hover effect for rows */
+  .products-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
 }
+
+@media (max-width: 1249px) and (min-width: 600px) {
+  .products-table {
+    display: flex;
+    justify-content: center;
+  }
+
+  .products-table-cell.image-cell {
+    display: none;
+  }
+
+  .products-table thead {
+    display: none; /* Hide the header row */
+  }
+
+  .products-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .products-table tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+
+  .products-table-cell {
+    display: flex;
+    align-items: center;
+    width: 50%; /* Adjust the width as needed */
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .products-table-cell:before {
+    content: attr(data-label);
+    flex-basis: 100px; /* Adjust the width of the label as needed */
+    font-weight: bold;
+  }
+}
+
+  /* Styles for screens smaller than 600px (mobile devices) */
+  @media (max-width: 599px) {
+    .products-table tbody tr {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .products-table tbody tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+
+    .products-table-cell {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      padding-left: 50%;
+      position: relative;
+    }
+
+    .products-table-cell:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      top: 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .products-table {
+      border: 0;
+    }
+
+    .products-table-cell.image-cell {
+      display: none;
+    }
+
+    .products-table-cell {
+      margin-bottom: 10px;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .products-table-cell:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+
+    .products-table thead {
+      display: none;
+    }
+
+    .products-table tbody tr {
+      margin-bottom: 10px;
+      display: block;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .products-table-cell {
+      text-align: center;
+      padding-left: 0;
+      position: relative;
+    }
+
+    .products-table-cell:before {
+      position: absolute;
+      left: 10px;
+      top: 0;
+      text-align: left;
+    }
+
+    .search-filter {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .search-filter > div {
+        display: flex;
+        flex-direction: column;
+      padding-bottom: 15px;
+    }
+
+    .search-filter > div > label {
+      padding-bottom: 5px;
+    }
+  }

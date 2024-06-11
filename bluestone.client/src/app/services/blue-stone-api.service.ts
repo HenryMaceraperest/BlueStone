@@ -31,6 +31,25 @@ export class BlueStoneApiService {
     )
   }
 
+  getProduct(url: string): Observable<IProduct> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }),
+      observe: "response" as 'body'
+    };
+    return this.httpClient.get<IProduct>(
+      url,
+      httpOptions
+    )
+      .pipe(
+        map((response: any) => this.ReturnResponseData(response)),
+        catchError(this.handleError)
+      )
+  }
+
   //addNewProduct(url: string, model: any): Observable<any> {
   //  const httpOptions = {
   //    headers: new HttpHeaders({

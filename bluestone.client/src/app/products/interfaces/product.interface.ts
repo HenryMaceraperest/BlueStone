@@ -7,7 +7,6 @@ export interface IProduct {
   model: string,
   stock: number,
   averageCost: number,
-  RSP: number,
-  isArchived: boolean,
+  rsp: number,
   lastUpdated: Date
 }

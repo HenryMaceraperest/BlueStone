@@ -41,7 +41,7 @@ public class ProductController : Controller//, IProductController
 				Stock = 3,
 				AverageCost = 6.65m,
 				RSP = 3.5m,
-				LastUpdated = DateTime.Now.AddHours(-1),
+				LastUpdated = DateTime.Now.AddDays(-2).Date,
 			},
             new Product
             {
@@ -54,7 +54,7 @@ public class ProductController : Controller//, IProductController
                 Stock = 5,
                 AverageCost = 2.55m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now.AddMinutes(-10),
+                LastUpdated = DateTime.Now.Date,
             },
             new Product
             {
@@ -67,12 +67,12 @@ public class ProductController : Controller//, IProductController
                 Stock = 1,
                 AverageCost = 5.5m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now.AddMinutes(-40),
+                LastUpdated = DateTime.Now.AddDays(-1).Date,
             },
              new Product
             {
                 Id = 4,
-                ImageUrl = "https://test.com/image/1",
+                ImageUrl = "",
                 Name = "TestName4",
                 Code = "TestCode4",
                 Barcode = "00188651455",
@@ -80,7 +80,7 @@ public class ProductController : Controller//, IProductController
                 Stock = 7,
                 AverageCost = 2.45m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now.AddMinutes(-5),
+                LastUpdated = DateTime.Now.AddDays(-5).Date,
             }
         };
 

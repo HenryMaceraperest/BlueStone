@@ -1,6 +1,7 @@
 .navbar {
   position: sticky;
-  top: -5px;
+  height: 50px;
+  top: 0;
   width: 100%;
   background-color: #3f51b5;
   color: #fff;
@@ -9,6 +10,8 @@
   height: 56px;
   align-items: center;
   justify-content: space-between;
+  color: white;
+  text-decoration: none;
 }
 
 .navbar-links {
@@ -16,16 +19,52 @@
   width: 50vw;
   justify-content: space-around;
   align-items: center;
+  text-decoration: none;
 }
+
+  .navbar-links > div > a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 10px;
+    position: relative;
+    overflow: hidden; /* Add this */
+  }
+
+    .navbar-links > div > a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background-color: white;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .navbar-links > div > a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .navbar-links > div > a.active-link::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+  .navbar-links > div > a:hover {
+    cursor: pointer;
+  }
 
 .btn-secondary {
   margin-right: 20px;
 }
 
 .icon img {
-  height: 130px;
+  height: 55px;
 }
 
-  .icon img:hover {
-    cursor: pointer;
-  }
+.icon img:hover {
+  cursor: pointer;
+}

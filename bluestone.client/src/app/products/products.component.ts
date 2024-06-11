@@ -18,7 +18,7 @@ enum SortOptions {
   lastUpdatedDes = "Last Updated ↓",
 }
 
-type SearchableKeys = 'id' | 'name' | 'code' | 'barcode' | 'model' | 'stock' | 'averageCost' | 'RSP';
+type SearchableKeys = 'name' | 'code' | 'barcode' | 'model' | 'stock' | 'averageCost' | 'rsp';
 
 
 @Component({
@@ -30,7 +30,19 @@ type SearchableKeys = 'id' | 'name' | 'code' | 'barcode' | 'model' | 'stock' | '
 export class ProductsComponent implements OnInit {
   productList = Array<IProduct>();
   canEditProducts = true;
-  productColumns: Array<keyof IProduct> = ['id', 'name', 'code', 'barcode', 'model', 'stock', 'averageCost', 'RSP', 'lastUpdated'];
+  productColumns: Array<keyof IProduct> = ['imageUrl' , 'name', 'code', 'barcode', 'model', 'stock', 'averageCost', 'rsp', 'lastUpdated'];
+  columnHeaders: { [K in keyof IProduct]?: string } = {
+    'imageUrl': '',
+    'name': 'Name',
+    'code': 'Code',
+    'barcode': 'Barcode',
+    'model': 'Model',
+    'stock': 'Stock QTY',
+    'averageCost': 'Avg. Cost',
+    'rsp': 'RSP',
+    'lastUpdated': 'Last Updated'
+  };
+
   options = Object.values(SortOptions);
   selectedOption = SortOptions.nameDes;
   searchQuery = '';
@@ -40,7 +52,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
-  }
+  }    
 
   async getAllProducts() {
     this.httpProvider.getAllProducts().subscribe((data: any) => {
@@ -48,7 +60,7 @@ export class ProductsComponent implements OnInit {
         var resultData = data.body;
         if (resultData) {
           this.productList = resultData;
-          console.log(resultData);
+          this.initalizeProductSort();
         }
       }
     },
@@ -102,7 +114,15 @@ export class ProductsComponent implements OnInit {
     let selectedValue = event.target.value;
     if (selectedValue != null) {
       let selectedKey = Object.keys(SortOptions)[Object.values(SortOptions).indexOf(selectedValue)];
-      if (selectedKey != null) this.compare(selectedKey)
+      if (selectedKey != null) {
+        this.compare(selectedKey);
+        this.selectedOption = SortOptions[selectedKey as keyof typeof SortOptions];
+      }
     }
+  }
+
+  initalizeProductSort() {
+    let event = { target: { value: this.selectedOption } };
+    this.onSelectionChange(event);
   }
 }
