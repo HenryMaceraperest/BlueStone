@@ -1,21 +1,30 @@
 <h1>Products Table<h1>
 
+<div>
+  <div>
+    <label for="searchQuery">Search products</label>
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search products...">
+  </div>
+  <div>
+    <label for="sortingType">Sort products</label>
+    <select [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
+      <option *ngFor="let option of options" [value]="option">{{option}}</option>
+    </select>
+  </div>
+</div>
+
 <table class="products-table">
   <thead>
     <tr>
-      <th
-          *ngFor="let col of productColumns"
-          class="products-table-cell"
-          (click)="sortTable(col)">
+      <th *ngFor="let col of productColumns"
+          class="products-table-cell">
         {{col}}
-        <span *ngIf="isDescendingSorting(col)">↓</span>
-        <span *ngIf="isAscendingSorting(col)">↑</span>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of productList">
-      <td *ngFor="let col of productColumns"  class="products-table-cell">
+    <tr *ngFor="let product of filteredProducts">
+      <td *ngFor="let col of productColumns" class="products-table-cell">
         {{product[col]}}
       </td>
     </tr>

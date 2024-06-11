@@ -1,34 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 import { HttpProviderService } from '../services/http-provider.service';
 import { IProduct } from './interfaces/product.interface';
-import { ISorting } from './interfaces/productSorting.interface';
+
+enum SortOptions {
+  nameAsc        = "Name ↑"        ,
+  nameDes        = "Name ↓"        ,
+  barcodeAsc     = "Barcode ↑"     ,
+  barcodeDes     = "Barcode ↓"     ,
+  stockAsc       = "Stock ↑"       ,
+  stockDes       = "Stock ↓"       ,
+  averageCostAsc = "Cost ↑"        ,
+  averageCostDes = "Cost ↓"        ,
+  RSPAsc         = "RSP ↑"         ,
+  RSPDes         = "RSP ↓"         ,
+  lastUpdatedAsc = "Last Updated ↑",
+  lastUpdatedDes = "Last Updated ↓",
+}
+
+type SearchableKeys = 'id' | 'name' | 'code' | 'barcode' | 'model' | 'stock' | 'averageCost' | 'RSP';
 
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  selector:     'app-products'             ,
+  templateUrl:  './products.component.html',
+  styleUrl:     './products.component.css'
 })
+
 export class ProductsComponent implements OnInit {
   productList = Array<IProduct>();
   canEditProducts = true;
-  filter = new FormControl('', { nonNullable: true });
   productColumns: Array<keyof IProduct> = ['id', 'name', 'code', 'barcode', 'model', 'stock', 'averageCost', 'RSP', 'lastUpdated'];
-  sorting: ISorting = {
-    column: 'id',
-    order: 'asc'
-  }
+  options = Object.values(SortOptions);
+  selectedOption = SortOptions.nameDes;
+  searchQuery = '';
+
   constructor(private httpProvider: HttpProviderService) {
   }
- 
+
   ngOnInit(): void {
     this.getAllProducts();
   }
 
   async getAllProducts() {
-    this.httpProvider.getAllProducts(this.sorting).subscribe((data: any) => {
+    this.httpProvider.getAllProducts().subscribe((data: any) => {
       if (data != null && data.body != null) {
         var resultData = data.body;
         if (resultData) {
@@ -48,34 +63,46 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  isDescendingSorting(column: string) {
-    return this.sorting.column === column && this.sorting.order === 'desc';
-  }
-
-  isAscendingSorting(column: string) {
-    return this.sorting.column === column && this.sorting.order === 'asc';
-  }
-
-  sortTable(column: keyof IProduct): void{
-    const futureSortingOrder = this.isDescendingSorting(column) ? 'asc' : 'desc';
-    this.sorting.order = futureSortingOrder;
-    this.compare(column, futureSortingOrder);
-  }
-
-  compare(sortType: keyof IProduct, ascDesc:'asc' | 'desc') {
-    this.productList.sort((a: IProduct, b: IProduct) => {
-      let comparison = 0;
-
-      if (sortType === 'lastUpdated') {
-        let dateA = new Date(a[sortType]);
-        let dateB = new Date(b[sortType]);
-        comparison = dateA.getTime() < dateB.getTime() ? -1 : dateA.getTime() > dateB.getTime() ? 1 : 0;
-      }
-      else if (typeof a[sortType] === 'number' || typeof a[sortType] === 'string') {
-        comparison = a[sortType] < b[sortType] ? -1 : a[sortType] > b[sortType] ? 1 : 0;
-      }        
-
-      return ascDesc === 'asc' ? comparison : -comparison;
+  get filteredProducts() {
+    if (!this.productList) return [];
+    if (!this.searchQuery) return this.productList;
+    let searchQuery = this.searchQuery.toLowerCase();
+    return this.productList.filter(product => {
+      return (['id', 'name', 'code', 'barcode', 'model', 'stock', 'averageCost', 'RSP'] as SearchableKeys[]).some(key => {
+        let value = product[key];
+        if (value !== null && value !== undefined) {
+          return value.toString().toLowerCase().includes(searchQuery);
+        }
+        return false;
+      });
     });
+  }
+
+  compare(selectedKey: string) {
+    let sortField = selectedKey.slice(0, -3);
+    let sortOrder = selectedKey.slice(-3);
+    this.productList.sort((a: IProduct, b: IProduct) => {
+      let aSortField = a[sortField as keyof IProduct];
+      let bSortField = b[sortField as keyof IProduct];
+      if (typeof aSortField === 'number' && typeof bSortField === 'number') {
+        if (aSortField != bSortField) return sortOrder === 'Asc' ? aSortField - bSortField : bSortField - aSortField;
+      } else if (aSortField instanceof Date && bSortField instanceof Date) {
+        if (aSortField != bSortField) return sortOrder === 'Asc' ? aSortField.getTime() - bSortField.getTime() : bSortField.getTime() - aSortField.getTime();
+      }
+      else {
+        let aString = aSortField as String;
+        let bString = bSortField as String;
+        if (aString != bString) return sortOrder === 'Asc' ? aString.localeCompare(bString.toString()) : bString.localeCompare(aString.toString());
+      }
+      return 0;
+    });
+    }
+
+  onSelectionChange(event: any) {
+    let selectedValue = event.target.value;
+    if (selectedValue != null) {
+      let selectedKey = Object.keys(SortOptions)[Object.values(SortOptions).indexOf(selectedValue)];
+      if (selectedKey != null) this.compare(selectedKey)
+    }
   }
 }

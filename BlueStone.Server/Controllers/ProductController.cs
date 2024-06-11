@@ -36,12 +36,12 @@ public class ProductController : Controller//, IProductController
 				ImageUrl = "https://test.com/image/1",
 				Name = "TestName1",
 				Code = "TestCode1",
-				Barcode = "11TestBarcode11",
+				Barcode = "00123341455",
 				Model = "TestModel1",
-				Stock = 5,
-				AverageCost = 3.45m,
+				Stock = 3,
+				AverageCost = 6.65m,
 				RSP = 3.5m,
-				LastUpdated = DateTime.Now
+				LastUpdated = DateTime.Now.AddHours(-1),
 			},
             new Product
             {
@@ -49,12 +49,12 @@ public class ProductController : Controller//, IProductController
                 ImageUrl = "https://test.com/image/1",
                 Name = "TestName2",
                 Code = "TestCode2",
-                Barcode = "22TestBarcode22",
+                Barcode = "00122241455",
                 Model = "TestModel2",
                 Stock = 5,
-                AverageCost = 3.45m,
+                AverageCost = 2.55m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now
+                LastUpdated = DateTime.Now.AddMinutes(-10),
             },
             new Product
             {
@@ -62,12 +62,12 @@ public class ProductController : Controller//, IProductController
                 ImageUrl = "https://test.com/image/1",
                 Name = "TestName3",
                 Code = "TestCode3",
-                Barcode = "33TestBarcode33",
+                Barcode = "0523441455",
                 Model = "TestModel3",
-                Stock = 5,
-                AverageCost = 3.45m,
+                Stock = 1,
+                AverageCost = 5.5m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now
+                LastUpdated = DateTime.Now.AddMinutes(-40),
             },
              new Product
             {
@@ -75,12 +75,12 @@ public class ProductController : Controller//, IProductController
                 ImageUrl = "https://test.com/image/1",
                 Name = "TestName4",
                 Code = "TestCode4",
-                Barcode = "44TestBarcode44",
+                Barcode = "00188651455",
                 Model = "TestModel4",
-                Stock = 5,
-                AverageCost = 3.45m,
+                Stock = 7,
+                AverageCost = 2.45m,
                 RSP = 3.5m,
-                LastUpdated = DateTime.Now
+                LastUpdated = DateTime.Now.AddMinutes(-5),
             }
         };
 
