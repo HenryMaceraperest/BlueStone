@@ -19,46 +19,85 @@ For the front-end you need: Node Package Manager (NPM), I have 10.5.0  installed
 These are the node packages used/dependencies:
 
 +-- @angular-devkit/build-angular@18.0.3
+
 +-- @angular/animations@18.0.2
+
 +-- @angular/cli@18.0.3
+
 +-- @angular/common@18.0.2
+
 +-- @angular/compiler-cli@18.0.2
+
 +-- @angular/compiler@18.0.2
+
 +-- @angular/core@18.0.2
+
 +-- @angular/forms@18.0.2
+
 +-- @angular/platform-browser-dynamic@18.0.2
+
 +-- @angular/platform-browser@18.0.2
+
 +-- @angular/router@18.0.2
+
 +-- @azure/msal-angular@3.0.19
+
 +-- @azure/msal-browser@3.16.0
+
 +-- @ng-bootstrap/ng-bootstrap@16.0.0
+
 +-- @types/jasmine@5.1.4
+
 +-- jasmine-core@5.1.2
+
 +-- jest-editor-support@32.0.0-beta.1
+
 +-- karma-chrome-launcher@3.2.0
+
 +-- karma-coverage@2.2.1
+
 +-- karma-jasmine-html-reporter@2.1.0
+
 +-- karma-jasmine@5.1.0
+
 +-- karma@6.4.3
+
 +-- run-script-os@1.1.6
+
 +-- rxjs@7.8.1
+
 +-- tslib@2.6.3
+
 +-- typescript@5.4.5
+
 `-- zone.js@0.14.7 
 
 For the back-end, the NuGet top-level packages I have installed are:
+
 Microsoft.AspNetCore.Authentication 6.0.31
+
 Microsoft.AspNetCore.SpaProxy 8.0.6
+
 Microsoft.EntityFrameworkCore 8.0.6
+
 Microsoft.EntityFrameworkCore.SqlServer 8.0.6
+
 Microsoft.EntityFrameworkCore.Tools 8.0.6
+
 Microsoft.Identity.Web 2.19.0
+
 Microsoft.Identity.Web.UI 2.19.0
+
 Serilog 4.0.0
+
 Serilog.Extensions.Hosting 8.0.0
+
 Serilog.Sinks.Console 6.0.0
+
 Serilog.Sinks.File 5.0.0
+
 Swasbuckle.AspNetCore 6.4.0
+
 
 ### Changes
 
