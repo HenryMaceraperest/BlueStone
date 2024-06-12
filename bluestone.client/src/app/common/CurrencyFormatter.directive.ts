@@ -28,9 +28,15 @@ export class CurrencyFormatterDirective {
     if (this.currentValue.length > 3 && this.currentValue.startsWith('0')) {
       this.currentValue = this.currentValue.slice(1);
     }
-      let pounds = this.currentValue.slice(0, -2);
-      let pence = this.currentValue.slice(-2);
-      let newValue = `£${pounds}.${pence}`;
+    let totalCents = parseInt(this.currentValue, 10);
+    let pounds = Math.floor(totalCents / 100);
+    let pence = totalCents % 100;
+    let newValue = `£${pounds}.${pence < 10 ? '00' + pence : pence}`;
+
+    //let pounds = Math.floor(Number(this.currentValue) / 100);
+    //let pence = Number((Number(this.currentValue) % 10).toFixed(2));
+    //let newValue = `£${pounds}.${pence < 10 ? '0' + pence : pence}`;
+
 
       this.el.nativeElement.value = newValue;
       this.el.nativeElement.setSelectionRange(newValue.length, newValue.length);

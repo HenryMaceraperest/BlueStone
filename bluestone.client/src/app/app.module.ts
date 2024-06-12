@@ -27,6 +27,7 @@ import { AboutComponent } from './about/about.component';
 import { ProductAddEditComponent } from './products/product-add-edit/product-add-edit.component';
 import { CurrencyFormatterDirective } from './common/CurrencyFormatter.directive';
 import { ProductViewComponent } from './products/product-view/product-view.component';
+import { CurrencyService } from './services/currency.service';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -95,7 +96,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     },
     MsalService,
     MsalGuard,
-    MsalBroadcastService
+    MsalBroadcastService,
+    CurrencyService
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
   exports: [

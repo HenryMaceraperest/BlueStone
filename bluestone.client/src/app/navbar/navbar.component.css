@@ -14,6 +14,26 @@
   text-decoration: none;
 }
 
+.product-sort {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+}
+
+.navbar-end{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-end > div{
+    padding-right: 15px;
+}
+
 .navbar-links {
   display: flex;
   width: 50vw;

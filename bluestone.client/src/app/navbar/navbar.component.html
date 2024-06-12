@@ -12,7 +12,13 @@
     <div><a [routerLink]="['/about']" routerLinkActive="active-link">About</a></div>
     <div><a [routerLink]="['profile']" routerLinkActive="active-link" *ngIf="loginDisplay">Profile</a></div>
   </div>
-  <div>
+  <div class="navbar-end">
+    <div>
+      <label for="sortingType">Currency: </label>
+      <select class="product-sort" [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
+        <option *ngFor="let option of options" [value]="option">{{option}}</option>
+      </select>
+    </div>
     <a>
       <button *ngIf="!loginDisplay" class="btn btn-secondary" (click)="login()">Sign In</button>
       <button *ngIf="loginDisplay" class="btn btn-secondary" (click)="logout()">Sign Out</button>

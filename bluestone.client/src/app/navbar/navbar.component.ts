@@ -7,6 +7,12 @@ import { AuthenticationResult, EventMessage, EventType, InteractionStatus, Inter
 
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { CurrencyService } from '../services/currency.service';
+
+enum SortOptions {
+  GBP = "£ GBP",
+  USD = "$ USD",
+}
 
 @Component({
   selector: 'bluestone-navbar',
@@ -18,11 +24,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   loginDisplay = false;
   tokenExpiration: string = '';
   private readonly _destroying$ = new Subject<void>();
+  options = Object.values(SortOptions);
+  selectedOption = SortOptions.GBP;
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private currencyService: CurrencyService
   ) { }
 
   // On initialization of the page, display the page elements based on the user state
@@ -41,6 +50,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.tokenExpiration = (msg.payload as any).expiresOn;
       localStorage.setItem('tokenExpiration', this.tokenExpiration);
     });
+  }
+
+  onSelectionChange(event: any) {
+    let selectedValue = event.target.value;
+    if (selectedValue != null) {
+      let selectedKey = Object.keys(SortOptions)[Object.values(SortOptions).indexOf(selectedValue)];
+      if (selectedKey != null) {
+        this.currencyService.changeSelectedValue(selectedKey);
+      }
+    }
   }
 
   // If the user is logged in, present the user with a "logged in" experience

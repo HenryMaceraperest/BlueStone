@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { HttpProviderService } from '../services/http-provider.service';
 import { IProduct } from './interfaces/product.interface';
+import { CurrencyService } from '../services/currency.service';
+import { Subscription } from 'rxjs';
 
 
 enum SortOptions {
@@ -28,7 +30,7 @@ type SearchableKeys = 'name' | 'code' | 'barcode' | 'model' | 'stock' | 'average
   styleUrl:     './products.component.css'
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   productList = Array<IProduct>();
   canEditProducts = true;
   productColumns: Array<keyof IProduct> = ['imageUrl' , 'name', 'code', 'barcode', 'model', 'stock', 'averageCost', 'rsp', 'lastUpdated'];
@@ -47,12 +49,17 @@ export class ProductsComponent implements OnInit {
   options = Object.values(SortOptions);
   selectedOption = SortOptions.nameDes;
   searchQuery = '';
+  selectedValue: { [key: string]: number } = { "£": 1};
+  private subscription!: Subscription;
 
-  constructor(private httpProvider: HttpProviderService) {
+  constructor(private httpProvider: HttpProviderService, private currencyService: CurrencyService) {
   }
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.subscription = this.currencyService.currentSelectedValue.subscribe(value => {
+      this.selectedValue = value;
+    })
   }    
 
   async getAllProducts() {
@@ -125,5 +132,9 @@ export class ProductsComponent implements OnInit {
   initalizeProductSort() {
     let event = { target: { value: this.selectedOption } };
     this.onSelectionChange(event);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
