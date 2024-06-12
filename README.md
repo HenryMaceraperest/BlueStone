@@ -121,7 +121,7 @@ Right click on the solution and select 'Restore NuGet Packages' to ensure all th
 
 #### 4. Install Node Modules
 You should have NPM installed at this point. In gitbash or the Developer PowerShell in Visual Studio, navigate to the client project directory.
-Run 'npm install'.
+Run 'npm install --legacy-peer-deps'.
 
 #### 5. Check Start-up Projects
 Make sure that both the client and server applications are set as start-up projects to run.
