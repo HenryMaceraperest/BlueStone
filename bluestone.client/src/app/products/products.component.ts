@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpProviderService } from '../services/http-provider.service';
 import { IProduct } from './interfaces/product.interface';
 
+
 enum SortOptions {
   nameAsc        = "Name ↑"        ,
   nameDes        = "Name ↓"        ,

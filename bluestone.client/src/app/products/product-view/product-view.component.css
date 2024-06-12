@@ -35,6 +35,8 @@
   font-size: 1em;
   transition: 0.3s;
   text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .form-component span {

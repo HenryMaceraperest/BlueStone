@@ -13,6 +13,11 @@
   justify-content: space-between;
 }
 
+.products-table-cell {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .search-input {
   padding: 10px;
   border: 1px solid rgba(255,255,255,0.25);

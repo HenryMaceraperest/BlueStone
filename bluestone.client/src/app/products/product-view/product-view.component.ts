@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../interfaces/product.interface';
 import { HttpProviderService } from '../../services/http-provider.service';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-view',
@@ -14,7 +12,7 @@ export class ProductViewComponent implements OnInit {
   productId: string | null = null;
   currentProduct: IProduct | null = null;
 
-  constructor(private route: ActivatedRoute, private httpProvider: HttpProviderService) { }
+  constructor(private route: ActivatedRoute, private httpProvider: HttpProviderService, private router: Router) { }
 
   ngOnInit() {
 
@@ -49,6 +47,22 @@ export class ProductViewComponent implements OnInit {
   }
 
   onDeleteClick() {
-
+    if (this.currentProduct?.id != null && this.currentProduct?.id != undefined) {
+      this.httpProvider.archiveProduct(this.currentProduct.id).subscribe((data: any) => {
+        this.router.navigate(['/products']);
+      },
+        (error: any) => {
+          if (error) {
+            if (error.status == 404) {
+              if (error.error && error.error.message) {
+                this.currentProduct = null;
+              }
+            }
+          }
+        });
+    }
+    else {
+      // product doesnt have an id 
+    }
   }
 }

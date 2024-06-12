@@ -1,4 +1,6 @@
-﻿namespace BlueStone.Server.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BlueStone.Server.Models;
 
 public class Product
 {
@@ -9,8 +11,10 @@ public class Product
 	public string? Barcode { get; set; }
 	public string? Model { get; set; }
 	public int? Stock { get; set; }
-	public decimal? AverageCost { get; set; }
-	public decimal? RSP { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? AverageCost { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? RSP { get; set; }
 	public bool? IsArchived { get; set; }
 	public DateTime? LastUpdated { get; set; }
 }

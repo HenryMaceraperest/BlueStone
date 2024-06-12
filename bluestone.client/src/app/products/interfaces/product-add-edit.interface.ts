@@ -1,5 +1,5 @@
-export interface IProduct {
-  id: number,
+export interface IProductAddEdit {
+  id?: number;
   imageUrl?: string,
   name?: string,
   code?: string,
@@ -7,6 +7,5 @@ export interface IProduct {
   model?: string,
   stock?: number,
   averageCost?: number,
-  rsp?: number,
-  lastUpdated: Date
+  rsp?: number
 }

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { IProduct } from '../../app/products/interfaces/product.interface';
+import { IProductAddEdit } from '../products/interfaces/product-add-edit.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -50,26 +51,44 @@ export class BlueStoneApiService {
       )
   }
 
-  addProduct(url: string, product: IProduct): Observable<any> {
+  addProduct(url: string, product: IProductAddEdit): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'accept': '*/*',
+        'Content-Type': 'application/json'
+      })
+    };
     return this.httpClient.post(
       url,
-      product)
+      product,
+      httpOptions
+      )
       .pipe(
         map((response: any) => this.ReturnResponseData(response)),
         catchError(this.handleError)      
         );
   }
 
-  updateProduct(url: string, product: IProduct): Observable<any> {
-    return this.httpClient.patch(url, product)
+  updateProduct(url: string, product: IProductAddEdit): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.patch(url, product, httpOptions)
       .pipe(
           map((response: any) => this.ReturnResponseData(response)),
           catchError(this.handleError)
           );
   }
 
-  archiveProduct(url: string, productID: number): Observable<any> {
-    return this.httpClient.patch(url, productID)
+  archiveProduct(url: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.patch(url, httpOptions)
       .pipe(
         map((response: any) => this.ReturnResponseData(response)),
         catchError(this.handleError)

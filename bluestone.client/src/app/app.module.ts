@@ -3,6 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // Required for Angular
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Required for Angular Materials
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+// HTTP modules required by MSAL
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+// Required for MSAL
+import { IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
+import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 
 // Required modules and components for this application
 import { AppRoutingModule } from './app-routing.module';
@@ -10,19 +21,10 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { msalEnvironment, environment } from '../environments/environment';
-
-// HTTP modules required by MSAL
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
-// Required for MSAL
-import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation, LogLevel } from '@azure/msal-browser';
-import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductAddEditComponent } from './products/product-add-edit/product-add-edit.component';
-import { CurrencyPipe } from '@angular/common';
 import { CurrencyFormatterDirective } from './common/CurrencyFormatter.directive';
 import { ProductViewComponent } from './products/product-view/product-view.component';
 
@@ -54,7 +56,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 
-// Create an NgModule that contains the routes and MSAL configurations
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {
@@ -94,8 +95,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     },
     MsalService,
     MsalGuard,
-    MsalBroadcastService,
-    CurrencyPipe
+    MsalBroadcastService
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
   exports: [
