@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,10 @@ export class CurrencyService {
   constructor(private http: HttpClient) { }
 
   changeSelectedValue(value: string) {
-    const url = "https://xecdapi.xe.com/v1/convert_from.json/?from=GBP&to=USD&amount=1";
-    const apiKey = "<Insert Currency Service API key here>";
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + apiKey
-      })
-    };
-    this.http.get(url, httpOptions)
+    const baseUrl = environment.currencyApi.apiBaseUri;
+    const apiKey = environment.currencyApi.apiKey;
+    let url = baseUrl + apiKey + "/pair/GBP/" + value
+    this.http.get(url)
     .subscribe(response => {
       let rate = response;
       this.selectedValue.next({value : Number(rate)});

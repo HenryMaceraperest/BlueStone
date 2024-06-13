@@ -26,5 +26,9 @@ export const environment = {
   auth: {
     microsoftGraphUri: 'https://graph.microsoft.com/v1.0/me',
     graphScope: 'user.read'
+  },
+  currencyApi: {
+    apiKey: "<Insert the API Key here>",
+    apiBaseUri: "<Insert the API Base uri here>"
   }
 };
