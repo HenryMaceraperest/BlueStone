@@ -14,8 +14,8 @@
   </div>
   <div class="navbar-end">
     <div>
-      <label for="sortingType">Currency: </label>
-      <select class="product-sort" [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
+      <label class="currency-select-label" for="currency-select">Currency: </label>
+      <select class="currency-select" [(ngModel)]="selectedOption" (change)="onSelectionChange($event)">
         <option *ngFor="let option of options" [value]="option">{{option}}</option>
       </select>
     </div>

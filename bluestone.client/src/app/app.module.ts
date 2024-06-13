@@ -5,9 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// Required for Angular Materials
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 // HTTP modules required by MSAL
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 

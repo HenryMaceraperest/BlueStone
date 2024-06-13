@@ -14,8 +14,8 @@
   text-decoration: none;
 }
 
-.product-sort {
-  padding: 10px;
+.currency-select {
+  padding: 7px;
   border: 1px solid rgba(255,255,255,0.25);
   background: #1d2b3a;
   border-radius: 5px;
@@ -24,10 +24,14 @@
   font-size: 1em;
 }
 
-.navbar-end{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.currency-select-label {
+    margin-right: 10px;
+}
+
+.navbar-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .navbar-end > div{

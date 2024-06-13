@@ -1,6 +1,10 @@
-.home-img{
-    width: auto;
-    max-width: 100%;
-    height: 100vh;
-    overflow:hidden;
+
+.home-img {
+  background: url('../../assets/homeBackground.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 93vh;
+  width: 100vw;
 }

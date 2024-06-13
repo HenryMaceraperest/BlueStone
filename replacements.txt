@@ -1,0 +1,7 @@
+"Server=tcp:bluestone-db-server.database.windows.net,1433;Initial Catalog=bluestone-db;Persist Security Info=False;User ID=test.testing@henrykonnohotmail.onmicrosoft.com;Password=BlueStonePassword1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Password\""==>"<Enter the database connection string here>"
+"henrykonnohotmail.onmicrosoft.com"==>"<Enter the Domain name/uri here>"
+"6a1d4ff8-12a9-4e07-b7b5-14c14510ec10"==>"<Enter the TenantID here>"
+"api://acd3e6ad-a680-49a2-bbc6-aee3f5de277a"==>"<Enter the ClientID here in the format of api://clientID>"
+'acd3e6ad-a680-49a2-bbc6-aee3f5de277a'==>'<Enter ClientID here>'
+'https://login.microsoftonline.com/6a1d4ff8-12a9-4e07-b7b5-14c14510ec10'==>'<Enter the authority here in the formap https://login.microsoftonline.com/tenantID>'
+"aukmie4a6sjtdosdscasjo9jml"==>"<Insert Currency Service API key here>"
