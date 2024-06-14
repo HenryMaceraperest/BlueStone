@@ -12,6 +12,9 @@ import { CurrencyService } from '../services/currency.service';
 enum SortOptions {
   GBP = "£ GBP",
   USD = "$ USD",
+  AUD = "$ AUD",
+  CAD = "$ CAD",
+  EUR = "€ EUR"
 }
 
 @Component({

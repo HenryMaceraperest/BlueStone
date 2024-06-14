@@ -25,11 +25,11 @@
         <span>Stock</span>      
     </div>
     <div class="form-input">      
-        <input type="text" appCurrencyFormatter formControlName="averageCost" required="required">
+        <input type="text" [currencyMask]="ngxCurrencyOptions" formControlName="averageCost" required="required">
         <span>Average Cost</span>      
     </div>
-    <div class="form-input">      
-        <input type="text" appCurrencyFormatter formControlName="rsp" required="required">
+    <div class="form-input">
+        <input type="text" [currencyMask]="ngxCurrencyOptions" formControlName="rsp" required="required">
         <span>RSP</span>
     </div>
     <div class="form-buttons">

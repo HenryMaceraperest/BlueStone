@@ -28,7 +28,7 @@ export const environment = {
     graphScope: 'user.read'
   },
   currencyApi: {
-    apiKey: "<Insert the API Key here>",
-    apiBaseUri: "<Insert the API Base uri here>"
+    apiKey: "<Enter Currency API Key here>",
+    apiBaseUri: "<Enter Currency base Uri here>"
   }
 };

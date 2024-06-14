@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // HTTP modules required by MSAL
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+// Required for currency formatting
+import { NgxCurrencyDirective } from 'ngx-currency';
+
 // Required for MSAL
 import { IPublicClientApplication, PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
@@ -22,7 +25,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
 import { ProductAddEditComponent } from './products/product-add-edit/product-add-edit.component';
-import { CurrencyFormatterDirective } from './common/CurrencyFormatter.directive';
 import { ProductViewComponent } from './products/product-view/product-view.component';
 import { CurrencyService } from './services/currency.service';
 
@@ -63,7 +65,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ProductsComponent,
     AboutComponent,
     ProductAddEditComponent,
-    CurrencyFormatterDirective,
     ProductViewComponent
   ],
   imports: [
@@ -72,6 +73,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxCurrencyDirective
   ],
   providers: [
     {
@@ -102,8 +104,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ProfileComponent,
     NavbarComponent,
     ProductsComponent,
-    AboutComponent,
-    CurrencyFormatterDirective
+    AboutComponent
   ]
 })
 export class AppModule { }

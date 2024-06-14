@@ -24,11 +24,11 @@
   </div>
   <div class="form-component">
     <span>Average Cost</span>
-    <div>{{ currentProduct?.averageCost }}</div>
+    <div>{{ currentProduct?.averageCost! * exchangeRate | currency: selectedCurrency : 'symbol' : '1.2-2' }}</div>
   </div>
   <div class="form-component">
     <span>RSP</span>
-    <div>{{ currentProduct?.rsp }}</div>
+    <div>{{ currentProduct?.rsp! * exchangeRate | currency: selectedCurrency : 'symbol' : '1.2-2' }}</div>
   </div>
   <div class="form-buttons">
     <button class="btn-success btn" [routerLink]="['/products/edit/' + currentProduct?.id]">Edit</button>

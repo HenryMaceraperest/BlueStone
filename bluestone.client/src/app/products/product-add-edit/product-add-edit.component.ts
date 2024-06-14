@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpProviderService } from '../../services/http-provider.service';
 import { IProductAddEdit } from '../interfaces/product-add-edit.interface';
+import { NgxCurrencyInputMode } from 'ngx-currency';
 
 @Component({
   selector: 'app-product-add-edit',
@@ -19,13 +20,23 @@ export class ProductAddEditComponent implements OnInit {
     code: new FormControl(''),
     barcode: new FormControl(''),
     model: new FormControl(''),
-    stock: new FormControl(''),
-    averageCost: new FormControl(''),
-    rsp: new FormControl(''),
+    stock: new FormControl(0),
+    averageCost: new FormControl(0),
+    rsp: new FormControl(0),
   });
   formattedAmount: number | string | null = null;
   amount: number | string | null = null;
   addOrSave: "Add Product" | "Save Changes" | "" = "";
+  ngxCurrencyOptions = {
+    prefix: '£ ',
+    thousands: ' ',
+    decimal: '.',
+    allowNegative: false,
+    nullable: false,
+    max: 1_000_000,
+    inputMode: NgxCurrencyInputMode.Financial,
+    align: 'left'
+  };
 
   constructor(private route: ActivatedRoute, private httpProvider: HttpProviderService, private router: Router) { }
 
@@ -109,16 +120,13 @@ export class ProductAddEditComponent implements OnInit {
       code        : this.currentProduct?.code,
       barcode     : this.currentProduct?.barcode,
       model       : this.currentProduct?.model,
-      stock       : this.currentProduct?.stock?.toString(),
-      averageCost : this.currentProduct?.averageCost?.toString(),
-      rsp         : this.currentProduct?.rsp?.toString(),
+      stock       : this.currentProduct?.stock,
+      averageCost : this.currentProduct?.averageCost,
+      rsp         : this.currentProduct?.rsp,
     });    
   }
 
   getProductFromForm() {
-    let avgCostValue = this.getNumberValueFromString('averageCost', true);
-    let rspValue = this.getNumberValueFromString('rsp', true);
-
     this.currentProduct = {
       id: this.currentProduct?.id ?? undefined,
       imageUrl: this.productForm.get('imageUrl')?.value ?? '',
@@ -127,22 +135,8 @@ export class ProductAddEditComponent implements OnInit {
       barcode: this.productForm.get('barcode')?.value ?? '',
       model: this.productForm.get('model')?.value ?? '',
       stock: Number(this.productForm.get('stock')?.value) ?? 0,
-      averageCost: avgCostValue ?? 0,
-      rsp: rspValue ?? 0
+      averageCost: this.productForm.get('averageCost')?.value ?? 0,
+      rsp: this.productForm.get('rsp')?.value ?? 0
     }
-  }
-
-  getNumberValueFromString(givenString: string, getFromProductForm: boolean): number {
-    let numValue = 0;
-    if (getFromProductForm) {
-      let formString = this.productForm.get(givenString)?.value;
-      if (formString != null) {
-        numValue = Number(formString.replace('£', ''));
-      }
-    }
-    else {
-      numValue = Number(givenString);
-    }
-    return numValue;    
   }
 }

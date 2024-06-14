@@ -28,11 +28,16 @@
             <img class="product-image" [src]="product[col] || '../../assets/defaultProduct.png'" alt="Product image">
           </ng-container>
           <ng-template #notImage>
-            <ng-container *ngIf="col === 'lastUpdated'; else default">
+            <ng-container *ngIf="col === 'lastUpdated'; else otherConditions">
               {{product[col] | date: 'dd/MM/yyyy'}}
             </ng-container>
-            <ng-template #default>
-                {{product[col]}}
+            <ng-template #otherConditions>
+              <ng-container *ngIf="col === 'rsp' || col === 'averageCost'; else default">
+                {{product[col]! * exchangeRateValue | currency: selectedCurrency : 'symbol' : '1.2-2'}}
+              </ng-container>
+              <ng-template #default>
+                {{ product[col] }}
+              </ng-template>
             </ng-template>
           </ng-template>
         </td>

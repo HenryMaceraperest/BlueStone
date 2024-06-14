@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { NgxCurrencyInputMode } from 'ngx-currency';
 
 import { HttpProviderService } from '../services/http-provider.service';
 import { IProduct } from './interfaces/product.interface';
 import { CurrencyService } from '../services/currency.service';
-import { Subscription } from 'rxjs';
 
 
 enum SortOptions {
@@ -46,10 +47,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
     'lastUpdated': 'Last Updated'
   };
 
+  ngxCurrencyOptions = {
+    prefix: '£ ',
+    thousands: ' ',
+    decimal: '.',
+    allowNegative: false,
+    nullable: false,
+    max: 1_000_000,
+    inputMode: NgxCurrencyInputMode.Financial,
+    align: 'left'
+  };
+
   options = Object.values(SortOptions);
   selectedOption = SortOptions.nameDes;
   searchQuery = '';
-  selectedValue: { [key: string]: number } = { "£": 1};
+  selectedCurrency: string = "GBP";
+  exchangeRate: number = 1;
   private subscription!: Subscription;
 
   constructor(private httpProvider: HttpProviderService, private currencyService: CurrencyService) {
@@ -58,9 +71,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getAllProducts();
     this.subscription = this.currencyService.currentSelectedValue.subscribe(value => {
-      this.selectedValue = value;
+      this.selectedCurrency = value[0] || "GBP";
+      this.exchangeRate = value[1] ;
     })
   }    
+
+  get exchangeRateValue() {
+    if (this.exchangeRate === null || this.exchangeRate === undefined || isNaN(this.exchangeRate)) {
+      return 1
+    } else {
+      return this.exchangeRate
+    }
+  }
 
   async getAllProducts() {
     this.httpProvider.getAllProducts().subscribe((data: any) => {
